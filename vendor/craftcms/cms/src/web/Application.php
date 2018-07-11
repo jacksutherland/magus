@@ -349,12 +349,12 @@ class Application extends \yii\web\Application
      */
     protected function ensureResourcePathExists()
     {
-        $resourceBasePath = Craft::getAlias($this->getConfig()->getGeneral()->resourceBasePath);
-        @FileHelper::createDirectory($resourceBasePath);
+        // $resourceBasePath = Craft::getAlias($this->getConfig()->getGeneral()->resourceBasePath);
+        // @FileHelper::createDirectory($resourceBasePath);
 
-        if (!is_dir($resourceBasePath) || !FileHelper::isWritable($resourceBasePath)) {
-            throw new InvalidConfigException($resourceBasePath . ' doesn’t exist or isn’t writable by PHP. 4');
-        }
+        // if (!is_dir($resourceBasePath) || !FileHelper::isWritable($resourceBasePath)) {
+        //     throw new InvalidConfigException($resourceBasePath . ' doesn’t exist or isn’t writable by PHP. 4');
+        // }
     }
 
     /**
