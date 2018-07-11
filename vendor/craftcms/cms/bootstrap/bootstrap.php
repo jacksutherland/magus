@@ -78,14 +78,14 @@ $ensureFolderIsReadable = function($path, $writableToo = false) {
         exit(($realPath !== false ? $realPath : $path).' doesn\'t exist or isn\'t writable by PHP. Please fix that. 1');
     }
 
-    if ($writableToo) {
-        if (!is_writable($realPath)) {
-            // Set a 503 response header so things like Varnish won't cache a bad page.
-            http_response_code(503);
+    // if ($writableToo) {
+    //     if (!is_writable($realPath)) {
+    //         // Set a 503 response header so things like Varnish won't cache a bad page.
+    //         http_response_code(503);
 
-            exit($realPath.' isn\'t writable by PHP. Please fix that. 2');
-        }
-    }
+    //         exit($realPath.' isn\'t writable by PHP. Please fix that. 2');
+    //     }
+    // }
 };
 
 // Determine the paths
