@@ -2541,9 +2541,9 @@ body.style-11 .swiper-tabs .block-title:before{background: #dc42b2;}
 body.style-11 .price .current{color: #dc42b2;}
 body.style-11 .swiper-active-switch{border-color: #dc42b2; background: #dc42b2;}
 body.style-11 .navigation-banner-content .subtitle{font-weight: 600; font-size: 18px; color: #cdcdcd; text-transform: uppercase; font-family: 'Raleway', sans-serif; letter-spacing: 3px;}
-body.style-11 .navigation-banner-content .title{font-family: 'Cantata One', serif; letter-spacing: 2px;}
+body.style-11 .navigation-banner-content .title{font-family: 'Francois One', sans-serif; letter-spacing: 2px;}
 body.style-11 .mozaic-banners-wrapper.type-2 .mozaic-banner-content .subtitle{font-family: 'Raleway', sans-serif; font-size: 14px; line-height: 22px; color: #fff; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px;}
-body.style-11 .mozaic-banners-wrapper.type-2 .mozaic-banner-content .title{font-family: 'Cantata One', serif; font-size: 44px; line-height: 44px; text-transform: uppercase; color: #fff; letter-spacing: 2px;}
+body.style-11 .mozaic-banners-wrapper.type-2 .mozaic-banner-content .title{font-family: 'Francois One', sans-serif; font-size: 44px; line-height: 44px; text-transform: uppercase; color: #fff; letter-spacing: 2px;}
 .mozaic-banners-wrapper.type-2 .mozaic-banner-content .view{font-family: "Merriweather", serif; font-style: italic; font-size: 12px; line-height: 16px; color: #fff; text-transform: uppercase; letter-spacing: 2px; border-bottom: 1px #fff solid; display: inline-block;}
 .mozaic-banners-wrapper.type-2 .mozaic-banner-content .view:hover{border-color: transparent;}
 body.style-11 .mozaic-banners-wrapper.type-2 a.mozaic-banner-entry:before{background: rgba(220, 66, 178, 0.7);}
@@ -2551,7 +2551,7 @@ body.style-11 .mozaic-banners-wrapper.type-2 .banner-column{padding: 0 15px;}
 body.style-11 .mozaic-banners-wrapper.type-2 .row{margin-left: -15px; margin-right: -15px;}
 body.style-11 a.sale-entry:before{background: rgba(220, 66, 178, 0.7);}
 body:not(.mobile).style-11 a.sale-entry:hover{border-color: rgba(220, 66, 178, 1);}
-body.style-11 .sale-entry .sale-price{font-family: 'Cantata One', serif; letter-spacing: 2px;}
+body.style-11 .sale-entry .sale-price{font-family: 'Francois One', sans-serif; letter-spacing: 2px;}
 body.style-11 .read-more:hover{color: #dc42b2;}
 body.style-11 .product-slide-entry .title:hover{color: #dc42b2;}
 body.style-11 .inline-product-entry .title:hover{color: #dc42b2;}
@@ -2573,7 +2573,7 @@ body.style-11 .button.style-4{background: #dc42b2; border-color: #dc42b2;}
 .color-text-widget .cell-view{height: 135px; width: 2000px; border: 1px rgba(255, 255, 255, 0.5) solid; padding: 15px 35px; text-align: center;}
 body:not(.mobile) .color-text-widget:hover .cell-view{border-color: transparent;}
 body:not(.mobile) .color-text-widget:hover{border-color: #ebebeb; background: #fff!important;}
-.color-text-widget .title{font-size: 20px; line-height: 24px; color: #fafafa; text-transform: uppercase; font-family: 'Cantata One', serif; display: block; margin-bottom: 10px;}
+.color-text-widget .title{font-size: 20px; line-height: 24px; color: #fafafa; text-transform: uppercase; font-family: 'Francois One', sans-serif; display: block; margin-bottom: 10px;}
 .color-text-widget .description{font-size: 13px; line-height: 22px; color: rgba(255, 255, 255, 0.7); display: block; margin-bottom: 10px;}
 body:not(.mobile) .color-text-widget:hover .title{color: #2e2e2e;}
 body:not(.mobile) .color-text-widget:hover .description{color: #a3a2a2;}
@@ -2595,7 +2595,7 @@ body.style-12 .read-more:hover{color: #ca1515;}
 .column-article-wrapper{border-top: 1px #ebebeb solid; border-bottom: 1px #ebebeb solid; padding: 43px 0;}
 .column-article-entry{padding: 35px 60px 35px 60px; min-height: 220px;}
 .column-article-wrapper .left-border{border-left: 1px #ebebeb solid;}
-.column-article-entry .title{font-size: 24px; line-height: 24px; color: #2e2e2e; font-family: 'Cantata One', serif; text-transform: uppercase; margin-bottom: 15px; display: block;}
+.column-article-entry .title{font-size: 24px; line-height: 24px; color: #2e2e2e; font-family: 'Francois One', sans-serif; text-transform: uppercase; margin-bottom: 15px; display: block;}
 .column-article-entry .title:hover{color: #ca1515;}
 .column-article-entry .description{font-size: 14px; line-height: 24px; color: #999797; font-weight: 300; margin-bottom: 15px;}
 body.style-10 .column-article-entry{text-align: center;}
@@ -2619,16 +2619,16 @@ body.style-14 .swiper-tabs .block-title:before{background: #6d4c3d;}
 body.style-14 .price .current{color: #6d4c3d;}
 body.style-14 .swiper-active-switch{border-color: #6d4c3d; background: #6d4c3d;}
 body.style-14 .navigation-banner-content .subtitle{font-weight: 600; font-size: 18px; color: #a25516; text-transform: uppercase; font-family: 'Raleway', sans-serif; letter-spacing: 3px;}
-body.style-14 .navigation-banner-content .title{font-family: 'Cantata One', serif; letter-spacing: 2px;}
+body.style-14 .navigation-banner-content .title{font-family: 'Francois One', sans-serif; letter-spacing: 2px;}
 body.style-14 .mozaic-banners-wrapper.type-2 .mozaic-banner-content .subtitle{font-family: 'Raleway', sans-serif; font-size: 14px; line-height: 22px; color: #ad6e3f; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px;}
-body.style-14 .mozaic-banners-wrapper.type-2 .mozaic-banner-content .title{font-family: 'Cantata One', serif; font-size: 44px; line-height: 44px; text-transform: uppercase; color: #373737; letter-spacing: 2px;}
+body.style-14 .mozaic-banners-wrapper.type-2 .mozaic-banner-content .title{font-family: 'Francois One', sans-serif; font-size: 44px; line-height: 44px; text-transform: uppercase; color: #373737; letter-spacing: 2px;}
 body.style-14 .mozaic-banners-wrapper.type-2 .mozaic-banner-content .view{font-family: "Merriweather", serif; font-style: italic; font-size: 12px; line-height: 16px; color: #373737; text-transform: uppercase; letter-spacing: 2px; border-bottom: 1px #373737 solid; display: inline-block;}
 body.style-14 .mozaic-banners-wrapper.type-2 .mozaic-banner-content .view:hover{border-color: transparent!important;}
 body.style-14 .mozaic-banners-wrapper.type-2 a.mozaic-banner-entry:before{background: rgba(109, 76, 61, 0.7);}
 body.style-14 .mozaic-banners-wrapper.type-2 .banner-column{padding: 0 15px;}
 body.style-14 .mozaic-banners-wrapper.type-2 .row{margin-left: -15px; margin-right: -15px;}
 body.style-14 a.sale-entry:before{background: rgba(109, 76, 61, 0.7);}
-body.style-14 .sale-entry .sale-price{font-family: 'Cantata One', serif; letter-spacing: 2px;}
+body.style-14 .sale-entry .sale-price{font-family: 'Francois One', sans-serif; letter-spacing: 2px;}
 body.style-14 .read-more:hover{color: #6d4c3d;}
 body.style-14 .product-slide-entry .title:hover{color: #6d4c3d;}
 body.style-14 .inline-product-entry .title:hover{color: #6d4c3d;}

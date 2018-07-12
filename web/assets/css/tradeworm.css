@@ -1,14 +1,8 @@
-/*
-.logo-title4 {
-	font-family: 'Luckiest Guy', cursive;
-}
-.logo-title1 {
-	font-family: 'Carter One', cursive;
-}
-*/
 .logo-title {
 	font-family: 'Chicle', cursive;
 	font-size: 4.5rem;
+	/*color: #6d4c3d;*/
+	color: #337ab7;
 }
 .logo-title :first-child {
 	font-family: 'Henny Penny', cursive;
@@ -16,9 +10,13 @@
 	margin-right:.5rem;
 }
 
+.fixed-header .logo-title { font-size: 3rem; }
+.fixed-header .logo-title :first-child { font-size: 2.5rem; margin-right:.25rem; }
+
 .header-top {
 	height: 45px;
 }
+
 
 
 @media (min-width: 1200px) {

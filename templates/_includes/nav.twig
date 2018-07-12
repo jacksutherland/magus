@@ -21,7 +21,12 @@
     <div class="nav-overflow">
         <nav>
             <ul>
-                <li class="full-width">
+                {% for page in craft.entries.section("pages").level(1) %}
+                    <li class="full-width">
+                        <a href="{{ page.url }}" class="">{{ page.title }}</a>{# <i class="fa fa-chevron-down"></i> #}
+                    </li>
+                {% endfor %}
+                {# <li class="full-width">
                     <a href="#" class="active">Home</a><i class="fa fa-chevron-down"></i>
                     <div class="submenu">
                         <div class="full-width-menu-items-right">
@@ -339,11 +344,12 @@
                 <li class="fixed-header-visible">
                     <a class="fixed-header-square-button open-cart-popup"><i class="fa fa-shopping-cart"></i></a>
                     <a class="fixed-header-square-button open-search-popup"><i class="fa fa-search"></i></a>
-                </li>
+                </li> #}
             </ul>
             <div class="clear"></div>
 
-            <a class="fixed-header-visible additional-header-logo"><img src="assets/img/logo-12.png" alt=""/></a>
+            {# <a class="fixed-header-visible additional-header-logo"><img src="assets/img/logo-12.png" alt=""/></a> #}
+            <a class="fixed-header-visible additional-header-logo" href="{{ currentSite.baseUrl }}"><h1 class="logo-title"><span>Trade</span><span>Worm</span></h1></a>
         </nav>
         <div class="navigation-footer responsive-menu-toggle-class">
             <div class="socials-box">
