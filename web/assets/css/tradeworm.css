@@ -1,0 +1,55 @@
+/*
+.logo-title4 {
+	font-family: 'Luckiest Guy', cursive;
+}
+.logo-title1 {
+	font-family: 'Carter One', cursive;
+}
+*/
+.logo-title {
+	font-family: 'Chicle', cursive;
+	font-size: 4.5rem;
+}
+.logo-title :first-child {
+	font-family: 'Henny Penny', cursive;
+	font-size: 4rem;
+	margin-right:.5rem;
+}
+
+.header-top {
+	height: 45px;
+}
+
+
+@media (min-width: 1200px) {
+	header.type-4 .header-middle .right-entries {
+		top: -30px;
+	}
+	header.type-4 .header-middle .open-cart-popup:before {
+	    height: 49px;
+	}
+}
+
+@media (max-width: 1199px) {
+	.menu-button {
+		top: 11px;
+	}
+	.header-middle .right-entries {
+		display: none;
+	}
+}
+
+/* Tablets (>=768px)*/
+@media (max-width: 991px) {	
+}
+
+/*Phones (<768px)*/
+@media (min-width: 768px) {
+}
+
+@media (max-width: 767px) {
+}
+
+@media (max-width: 480px) {
+}
+

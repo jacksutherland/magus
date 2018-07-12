@@ -1,0 +1,66 @@
+{% if customer %}
+    {% set orders = customer.orders %}
+
+    <div id="no-orders"{% if orders|length %} class="hidden"{% endif %}>
+        <p>{{ "No orders exist for this user yet."|t('commerce') }}</p>
+    </div>
+
+    {% if orders|length %}
+        <table class="data fullwidth collapsible">
+            <thead>
+            <tr>
+                <th scope="col">{{ 'Order'|t('commerce') }}</th>
+                <th scope="col">{{ 'Order Date'|t('commerce') }}</th>
+                <th scope="col">{{ 'Total Paid'|t('commerce') }}</th>
+                <th scope="col">{{ 'Status'|t('commerce') }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for order in orders %}
+                <tr>
+                    <td>{{ order.link|raw }}</td>
+                    <td>{% if order.isCompleted %}{{ order.dateOrdered|date('D dS M Y') }}{% endif %}</td>
+                    <td>{{ order.totalPaid|currency(order.currency) }}</td>
+                    <td>{{ order.orderStatus.labelHtml|raw }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+    {% set addresses = customer.addresses %}
+    <div id="no-addresses"{% if addresses|length %} class="hidden"{% endif %}>
+        <p>{{ "No addresses exist for this user yet."|t('commerce') }}</p>
+    </div>
+    <br>
+    {% if addresses|length %}
+        <div class="address-heading-label">
+            <label>{{ "Addresses"|t('commerce') }}</label>
+        </div>
+        <div class="address-boxes">
+            {% for address in addresses %}
+                <div id="Address" class="address-box hidden"
+                     data-title="{{ 'Address {number}'|t('commerce', { number: loop.index }) }}"
+                     data-address='{%- if address and address.id -%}{{ address|json_encode_filtered }}{%- endif %}'>
+                    <div class="address-box-content">
+                        <div class="address-box-header"></div>
+                        {#{% if not currentUser.can('commerce-manageOrders') %}hidden{% endif %}#}
+                        <div class="address"></div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endif %}
+
+{% includecss %}
+    .address-heading-label { margin-bottom:4px; }
+{% endincludecss %}
+{% js %}
+    window.countries = JSON.parse('{{ craft.commerce.countries.allCountries|json_encode|raw }}');
+    window.states = JSON.parse('{{ craft.commerce.states.allStates|json_encode|raw }}');
+
+    $(".address-box").each(function(){
+    new Craft.Commerce.AddressBox($(this),{});
+    });
+{% endjs %}
