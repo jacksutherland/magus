@@ -68,7 +68,7 @@
                 <div class="row">
                 	{% for cat in entry.featuredCategories %}
                 		<div class="banner-column col-sm-6">
-	                        <a style="background-image: url(assets/img/bags-3.jpg); background-size: cover;" class="mozaic-banner-entry type-3">
+	                        <a href="{{ cat.url }}" style="background-image: url(assets/img/bags-3.jpg); background-size: cover;" class="mozaic-banner-entry type-3">
 	                            <span class="mozaic-banner-content">
 	                                <span class="subtitle">Category</span>
 	                                <span class="title">{{ cat.title }}</span>
@@ -111,8 +111,8 @@
 		                                                        <a class="bottom-line-a"><i class="fa fa-shopping-cart"></i> Add to cart</a>
 		                                                    </div>
 		                                                </div>
-		                                                <a class="tag" href="#">{{ cat.slug }}</a>
-		                                                <a class="title" href="#">{{ ent.title }}</a>
+		                                                <a class="tag" href="{{ cat.url }}">{{ cat.slug }}</a>
+		                                                <a class="title" href="{{ ent.url }}">{{ ent.title }}</a>
 		                                                <div class="rating-box">
 		                                                    <div class="star"><i class="fa fa-star"></i></div>
 		                                                    <div class="star"><i class="fa fa-star"></i></div>
@@ -267,10 +267,10 @@
     	{% for newb in craft.entries.section("products").order('entries.dateCreated desc').limit(15) %}
     		<div class="col-sm-4 information-entry">
 	            <div class="inline-product-entry">
-	                <a href="#" class="image"><img alt="" src="assets/img/product-image-inline-33.jpg"></a>
+	                <a href="{{ newb.url }}" class="image"><img alt="" src="assets/img/product-image-inline-33.jpg"></a>
 	                <div class="content">
 	                    <div class="cell-view">
-	                        <a href="#" class="title">{{ newb.title }}</a>
+	                        <a href="{{ newb.url }}" class="title">{{ newb.title }}</a>
 	                        <div class="price">
 	                            <div class="prev">$199,99</div>
 	                            <div class="current">$119,99</div>
