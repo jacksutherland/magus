@@ -17,7 +17,21 @@
 	height: 45px;
 }
 
+.mozaic-banners-wrapper.type-2 a.mozaic-banner-entry:before {
+	background: #FDFDFD !important;
+	opacity: 0.8;
+}
+.mozaic-banners-wrapper.type-2 a.mozaic-banner-entry:hover:before {
+	background: rgba(109, 76, 61, 0.7) !important;
+}
 
+.tabs-container {
+     margin-bottom: 0; 
+}
+
+.information-blocks {
+    margin-bottom: 20px;
+}
 
 @media (min-width: 1200px) {
 	header.type-4 .header-middle .right-entries {

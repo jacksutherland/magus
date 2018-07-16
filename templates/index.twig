@@ -68,7 +68,12 @@
                 <div class="row">
                 	{% for cat in entry.featuredCategories %}
                 		<div class="banner-column col-sm-6">
-	                        <a href="{{ cat.url }}" style="background-image: url(assets/img/bags-3.jpg); background-size: cover;" class="mozaic-banner-entry type-3">
+                            {% if cat.categoryImage.count() > 0 %}
+                                {% set catImgUrl = cat.categoryImage.one().url %}
+                            {% else %}
+                                {% set catImgUrl = 'assets/img/bags-3.jpg' %}
+                            {% endif %}
+	                        <a href="{{ cat.url }}" style="background-image: url('{{ catImgUrl }}'); background-size: cover;" class="mozaic-banner-entry type-3">
 	                            <span class="mozaic-banner-content">
 	                                <span class="subtitle">Category</span>
 	                                <span class="title">{{ cat.title }}</span>
@@ -104,7 +109,7 @@
 		                                        <div class="paddings-container">
 		                                            <div class="product-slide-entry">
 		                                                <div class="product-image">
-		                                                    <img src="assets/img/product-bag-1.jpg" alt="" />
+                                                            <img src="assets/img/product-bag-1.jpg" alt="" />
 		                                                    <a class="top-line-a left"><i class="fa fa-retweet"></i></a>
 		                                                    <a class="top-line-a right"><i class="fa fa-heart"></i></a>
 		                                                    <div class="bottom-line">
