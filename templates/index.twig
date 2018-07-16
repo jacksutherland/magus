@@ -109,26 +109,30 @@
 		                                        <div class="paddings-container">
 		                                            <div class="product-slide-entry">
 		                                                <div class="product-image">
-                                                            <img src="assets/img/product-bag-1.jpg" alt="" />
+                                                            {% if ent.productImages.count() > 0 %}
+                                                                <img src="{{ ent.productImages.first().url }}" alt="" />
+                                                            {% else %}
+                                                                <img src="assets/img/product-bag-1.jpg" alt="" />
+                                                            {% endif %}
 		                                                    <a class="top-line-a left"><i class="fa fa-retweet"></i></a>
 		                                                    <a class="top-line-a right"><i class="fa fa-heart"></i></a>
 		                                                    <div class="bottom-line">
 		                                                        <a class="bottom-line-a"><i class="fa fa-shopping-cart"></i> Add to cart</a>
 		                                                    </div>
 		                                                </div>
-		                                                <a class="tag" href="{{ cat.url }}">{{ cat.slug }}</a>
+		                                                <span class="tag">
+                                                            {% if cat.slug == "comics" %}
+                                                                {{ ent.bookCondition.label }}
+                                                            {% else %}
+                                                                {{ ent.isNew ? "New" : "Pre-Owned" }}
+                                                            {% endif %}
+                                                        </span>
 		                                                <a class="title" href="{{ ent.url }}">{{ ent.title }}</a>
-		                                                <div class="rating-box">
-		                                                    <div class="star"><i class="fa fa-star"></i></div>
-		                                                    <div class="star"><i class="fa fa-star"></i></div>
-		                                                    <div class="star"><i class="fa fa-star"></i></div>
-		                                                    <div class="star"><i class="fa fa-star"></i></div>
-		                                                    <div class="star"><i class="fa fa-star"></i></div>
-		                                                </div>
-		                                                <div class="price">
+		                                                {% include "products/_value" with { val: ent.productValue.value } %}
+		                                                {# <div class="price">
 		                                                    <div class="prev">$199,99</div>
 		                                                    <div class="current">$119,99</div>
-		                                                </div>
+		                                                </div> #}
 		                                            </div>
 		                                        </div>
 		                                    </div>
@@ -272,14 +276,28 @@
     	{% for newb in craft.entries.section("products").order('entries.dateCreated desc').limit(15) %}
     		<div class="col-sm-4 information-entry">
 	            <div class="inline-product-entry">
-	                <a href="{{ newb.url }}" class="image"><img alt="" src="assets/img/product-image-inline-33.jpg"></a>
+	                <a href="{{ newb.url }}" class="image">
+                        {% if newb.productImages.count() > 0 %}
+                            <img src="{{ newb.productImages.first().url }}" alt="" />
+                        {% else %}
+                            <img alt="" src="assets/img/product-image-inline-33.jpg">
+                        {% endif %}
+                    </a>
 	                <div class="content">
 	                    <div class="cell-view">
 	                        <a href="{{ newb.url }}" class="title">{{ newb.title }}</a>
-	                        <div class="price">
+                            <span class="tag">
+                                {% if newb.productCategory.count() > 0 and newb.productCategory.one().slug == "comics" %}
+                                    {{ newb.bookCondition.label }}
+                                {% else %}
+                                    {{ newb.isNew ? "New" : "Pre-Owned" }}
+                                {% endif %}
+                            </span>
+                            {% include "products/_value" with { val: newb.productValue.value } %}
+	                       {#  <div class="price">
 	                            <div class="prev">$199,99</div>
 	                            <div class="current">$119,99</div>
-	                        </div>
+	                        </div> #}
 	                    </div>
 	                </div>
 	                <div class="clear"></div>

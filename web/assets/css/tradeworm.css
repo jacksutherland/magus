@@ -17,6 +17,10 @@
 	height: 45px;
 }
 
+.sidebar-navigation .entry strong {
+	font-weight: 700;
+}
+
 .mozaic-banners-wrapper.type-2 a.mozaic-banner-entry:before {
 	background: #FDFDFD !important;
 	opacity: 0.8;
@@ -31,6 +35,42 @@
 
 .information-blocks {
     margin-bottom: 20px;
+}
+
+.product-slide-entry .product-image {
+    height: 200px;
+}
+
+.inline-product-entry .image {
+	width: 73px;
+	height: 73px;
+	overflow: hidden;
+}
+
+.inline-product-entry .image img {
+	width: 73px;
+}
+
+.inline-product-entry .content {
+    margin-left: 90px;
+}
+
+.tag {
+    font-size: 10px;
+    line-height: 14px;
+    color: #8b8b8b;
+    text-transform: uppercase;
+    display: block;
+    font-weight: 500;
+    margin-bottom: 7px;
+}
+
+.rating-box {
+    color: #ddd;
+}
+
+.rating-box .active .fa {
+    color: #f5c10c;
 }
 
 @media (min-width: 1200px) {
