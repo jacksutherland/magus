@@ -1,0 +1,17 @@
+<div class="product-thumb {{ size }}-product">
+	<a href="{{ product.url }}" class="product-image">
+        {% if product.productImages.count() > 0 %}
+            <img src="{{ product.productImages.first().url }}" alt="" />
+        {% endif %}
+   	</a>
+   	<div class="product-condition">
+        {% if product.productCategory | length and product.productCategory.first().slug == "comics" %}
+            {{ product.bookCondition.label }}
+        {% else %}
+            {{ product.isNew ? "New" : "Pre-Owned" }}
+        {% endif %}
+    </div>
+    <a class="product-title" href="{{ product.url }}">{{ product.title }}</a>
+    {% include "products/_value" with { val: product.productValue.value } %}
+    <div style="clear: both;"></div>
+</div>

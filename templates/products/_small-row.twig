@@ -1,0 +1,10 @@
+{# PASS ONLY 3 PRODUCTS #}
+<div class="row">
+	{% for product in products %}
+	    <div class="col-lg-4">
+	    	<div class="border-row">
+	    		{% include "products/_product-thumb" with { size: 'small', products: products } %}
+	    	</div>
+		</div>
+	{% endfor %}
+</div>

@@ -1,6 +1,7 @@
 {% extends "_layouts/main" %}
 
 {% set entry = craft.entries.slug('homepage').one() %}
+{% set products = craft.entries.section("products").order('entries.dateCreated desc').limit(20) %}
 
 {% block content %}
 
@@ -27,24 +28,53 @@
 		    	{% endfor %}
 			</div>
 
-			<div>
-				{% for cat in entry.featuredCategories %}
-					<h5>{{ cat.title }}</h5>
-					<div class="row">
-						{% set catEntries = craft.entries.section("products").relatedTo(cat) %}
-						{% for ent in catEntries %}
-							<div class="col-6 col-lg-3">
-								{{ ent.title }}
-							</div>
-						{% endfor %}
-					</div>
-				{% endfor %}
+			{# NEW ARRIVALS #}
+			<div class="new-arrivals">
+				<h3>New Arrivals</h3> 
+				{% include "products/_large-row" with { products: products | slice(0, 4) } %}
+				{% include "products/_large-row" with { products: products | slice(4, 4) } %}
 			</div>
 			
+			{# CTASs #}
+			<div class="row">
+                <div class="col-lg-6">
+                    <div class="cta cta-style-1">
+                        <div class="cta-frame">
+                            <h4 class="title">What goes here?</h4>
+                            <div class="description">Lorem ipsum dolor sit amet, consectetur adipisc eiusmod. Lorem ipsum dolor sit amet.</div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="cta cta-style-2">
+                        <div class="cta-frame">
+                            <h4 class="title">I just don't know</h4>
+                            <div class="description">Lorem ipsum dolor sit amet, consectetur adipisc eiusmod. Lorem ipsum dolor sit amet.</div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+			
 		</div>
+
+		{# CATEGORY LIST #}
 		<div class="col-md-4 col-lg-3">
 			{% embed "_includes/categories" %}{% endembed %}
 		</div>
+
 	</div>
+
+	{# MORE PRODUCTS #}
+	<div class="border-spacer"></div>
+	{# {% include "products/_small-row" with { products: products | slice(8, 3) } %}
+	{% include "products/_small-row" with { products: products | slice(11, 3) } %}
+	{% include "products/_small-row" with { products: products | slice(14, 3) } %}
+	{% include "products/_small-row" with { products: products | slice(17, 3) } %} #}
+	{% include "products/_small-row" with { products: products | slice(0, 3) } %}
+	{% include "products/_small-row" with { products: products | slice(3, 3) } %}
+	{% include "products/_small-row" with { products: products | slice(0, 3) } %}
+	{% include "products/_small-row" with { products: products | slice(3, 3) } %}
 
 {% endblock %}
