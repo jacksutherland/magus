@@ -1,0 +1,113 @@
+{% extends "_layout" %}
+
+{% block content %}
+
+{% set catSlug = craft.request.getSegment(1) %}
+{% set category = craft.categories.slug(catSlug) %}
+{# {% set products = craft.entries.section('products').relatedTo(category) %} #}
+{% set products = craft.entries.section('products') %}
+
+
+<div>
+    <div class="row">
+        <div class="col-md-9 information-entry">
+
+            <div class="tabs-container">
+                {# <div class="swiper-tabs tabs-switch">
+                    <div class="title">Products</div>
+                    <div class="list">
+                        {% for cat in entry.featuredCategories %}
+                            <a class="block-title tab-switcher{% if loop.index == 1 %} active{% endif %}">Featured {{ cat.title }}</a>
+                        {% endfor %}
+                        <div class="clear"></div>
+                    </div>
+                </div> #}
+                <div>
+                        <div class="tabs-entry">
+                            <div class="products-swiper">
+                                <div class="swiper-container" data-autoplay="0" data-loop="0" data-speed="500" data-center="0" data-slides-per-view="responsive" data-xs-slides="2" data-int-slides="2" data-sm-slides="3" data-md-slides="4" data-lg-slides="4" data-add-slides="4">
+                                    <div class="swiper-wrapper">
+                                        {% for ent in products %}
+                                            <div class="swiper-slide"> 
+                                                <div class="paddings-container">
+                                                    <div class="product-slide-entry">
+                                                        <div class="product-image">
+                                                            {% if ent.productImages.count() > 0 %}
+                                                                <img src="{{ ent.productImages.first().url }}" alt="" />
+                                                            {% else %}
+                                                                <img src="assets/img/product-bag-1.jpg" alt="" />
+                                                            {% endif %}
+                                                            {# <a class="top-line-a left"><i class="fa fa-retweet"></i></a> #}
+                                                            <a class="top-line-a right"><i class="fa fa-heart"></i></a>
+                                                            <div class="bottom-line">
+                                                                {# <a class="bottom-line-a"><i class="fa fa-shopping-cart"></i> Add to cart</a> #}
+                                                                <a class="bottom-line-a" href="{{ ent.url }}">View Details</a>
+                                                            </div>
+                                                        </div>
+                                                        <span class="tag">
+                                                            {% if category.slug == "comics" %}
+                                                                {{ ent.bookCondition.label }}
+                                                            {% else %}
+                                                                {{ ent.isNew ? "New" : "Pre-Owned" }}
+                                                            {% endif %}
+                                                        </span>
+                                                        <a class="title" href="{{ ent.url }}">{{ ent.title }}</a>
+                                                        {% include "products/_value" with { val: ent.productValue.value } %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="pagination"></div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 information-entry">
+			{% embed "_includes/categories" %}{% endembed %}
+        </div>
+
+    </div>
+</div>
+
+<div class="information-blocks">
+    <h3 class="block-title inline-product-column-title">New Arrivals</h3>
+    <div class="row">
+    	{% for newb in craft.entries.section("products").order('entries.dateCreated desc').limit(15) %}
+    		<div class="col-sm-4 information-entry">
+	            <div class="inline-product-entry">
+	                <a href="{{ newb.url }}" class="image">
+                        {% if newb.productImages.count() > 0 %}
+                            <img src="{{ newb.productImages.first().url }}" alt="" />
+                        {% else %}
+                            <img alt="" src="assets/img/product-image-inline-33.jpg">
+                        {% endif %}
+                    </a>
+	                <div class="content">
+	                    <div class="cell-view">
+	                        <a href="{{ newb.url }}" class="title">{{ newb.title }}</a>
+                            <span class="tag">
+                                {% if newb.productCategory.count() > 0 and newb.productCategory.one().slug == "comics" %}
+                                    {{ newb.bookCondition.label }}
+                                {% else %}
+                                    {{ newb.isNew ? "New" : "Pre-Owned" }}
+                                {% endif %}
+                            </span>
+                            {% include "products/_value" with { val: newb.productValue.value } %}
+
+	                    </div>
+	                </div>
+	                <div class="clear"></div>
+	            </div>
+	       	</div>
+    	{% endfor %}
+    </div>
+</div>
+
+
+
+
+{% endblock %}

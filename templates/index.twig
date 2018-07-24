@@ -1,442 +1,50 @@
-{% extends "_layout" %}
+{% extends "_layouts/main" %}
+
+{% set entry = craft.entries.slug('homepage').one() %}
 
 {% block content %}
 
-{# <div class="row">
-    
-    <div class="col-md-3 col-md-push-9">
+	<div class="row">
+		<div class="col-md-8 col-lg-9">
 
-    	{% embed "_includes/categories" %}{% endembed %}
+			{# FEATURED CATEGORIES #}
+			<div class="row">
+				{% for cat in entry.featuredCategories %}
+		    		<div class="col-md-6">
+		                {% if cat.categoryImage.count() > 0 %}
+		                    {% set catImgUrl = cat.categoryImage.one().url %}
+		                {% else %}
+		                    {% set catImgUrl = 'assets/img/bags-3.jpg' %}
+		                {% endif %}
+		                <a href="{{ cat.url }}" style="background-image: url('{{ catImgUrl }}'); background-size: cover;" class="featured-category">
+		                    <span class="featured-category-content">
+		                        <span class="subtitle">Category</span>
+		                        <span class="title">{{ cat.title }}</span>
+		                        <span class="view">view {{ cat.title }}</span>
+		                    </span>
+		                </a>
+		            </div>
+		    	{% endfor %}
+			</div>
 
-        <div class="clear"></div>
-    </div>
-
-    <div class="col-md-9 col-md-pull-3">
-        <div class="navigation-banner-swiper">
-            <div class="swiper-container" data-autoplay="5000" data-loop="1" data-speed="500" data-center="0" data-slides-per-view="1">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide active" data-val="0"> 
-                        <div class="navigation-banner-wrapper align-1" style="background-image: url(assets/img/bags-1.jpg);">
-                            <div class="navigation-banner-content">
-                                <div class="cell-view">
-                                    <h2 class="subtitle">new special collection</h2>
-                                    <h2 class="title">Back to <br/> School!</h2>
-                                    <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing  elit, sed do eiusmod tempor incididunt.</div>
-                                    <div class="info">
-                                        <a class="button style-1" href="#">Shop Now</a>
-                                        <a class="button style-1" href="#">Features</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide" data-val="1"> 
-                        <div class="navigation-banner-wrapper align-1" style="background-image: url(assets/img/bags-2.jpg);">
-                            <div class="navigation-banner-content">
-                                <div class="cell-view">
-                                    <h2 class="subtitle">New special collection</h2>
-                                    <h2 class="title">delicacy</h2>
-                                    <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing  elit, sed do eiusmod tempor incididunt.</div>
-                                    <div class="info">
-                                        <a class="button style-1" href="#">Shop Now</a>
-                                        <a class="button style-1" href="#">Features</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="clear"></div>
-                <div class="pagination"></div>
-            </div>
-        </div>
-        <div class="clear"></div>
-    </div>
-
-</div> #}
-
-
-<div class="information-blocks">
-    <div class="row">
-        <div class="col-md-9 information-entry">
-
-
-
-            <div class="mozaic-banners-wrapper type-2">
-                <div class="row">
-                	{% for cat in entry.featuredCategories %}
-                		<div class="banner-column col-sm-6">
-                            {% if cat.categoryImage.count() > 0 %}
-                                {% set catImgUrl = cat.categoryImage.one().url %}
-                            {% else %}
-                                {% set catImgUrl = 'assets/img/bags-3.jpg' %}
-                            {% endif %}
-	                        <a href="{{ cat.url }}" style="background-image: url('{{ catImgUrl }}'); background-size: cover;" class="mozaic-banner-entry type-3">
-	                            <span class="mozaic-banner-content">
-	                                <span class="subtitle">Category</span>
-	                                <span class="title">{{ cat.title }}</span>
-	                                <span class="view">view {{ cat.title }}</span>
-	                            </span>
-	                        </a>
-	                    </div>
-                	{% endfor %}
-                    <div class="clear"></div>
-                </div>
-            </div>
-
-            <div class="tabs-container">
-                <div class="swiper-tabs tabs-switch">
-                    <div class="title">Products</div>
-                    <div class="list">
-                    	{% for cat in entry.featuredCategories %}
-                    		<a class="block-title tab-switcher{% if loop.index == 1 %} active{% endif %}">Featured {{ cat.title }}</a>
-                    	{% endfor %}
-                        <div class="clear"></div>
-                    </div>
-                </div>
-                <div>
-
-                	{% for cat in entry.featuredCategories %}
+			<div>
+				{% for cat in entry.featuredCategories %}
+					<h5>{{ cat.title }}</h5>
+					<div class="row">
 						{% set catEntries = craft.entries.section("products").relatedTo(cat) %}
-	                    <div class="tabs-entry">
-	                        <div class="products-swiper">
-	                            <div class="swiper-container" data-autoplay="0" data-loop="0" data-speed="500" data-center="0" data-slides-per-view="responsive" data-xs-slides="2" data-int-slides="2" data-sm-slides="3" data-md-slides="4" data-lg-slides="4" data-add-slides="4">
-	                                <div class="swiper-wrapper">
-                                		{% for ent in catEntries %}
-                                			<div class="swiper-slide"> 
-		                                        <div class="paddings-container">
-		                                            <div class="product-slide-entry">
-		                                                <div class="product-image">
-                                                            {% if ent.productImages.count() > 0 %}
-                                                                <img src="{{ ent.productImages.first().url }}" alt="" />
-                                                            {% else %}
-                                                                <img src="assets/img/product-bag-1.jpg" alt="" />
-                                                            {% endif %}
-		                                                    <a class="top-line-a left"><i class="fa fa-retweet"></i></a>
-		                                                    <a class="top-line-a right"><i class="fa fa-heart"></i></a>
-		                                                    <div class="bottom-line">
-		                                                        <a class="bottom-line-a"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-		                                                    </div>
-		                                                </div>
-		                                                <span class="tag">
-                                                            {% if cat.slug == "comics" %}
-                                                                {{ ent.bookCondition.label }}
-                                                            {% else %}
-                                                                {{ ent.isNew ? "New" : "Pre-Owned" }}
-                                                            {% endif %}
-                                                        </span>
-		                                                <a class="title" href="{{ ent.url }}">{{ ent.title }}</a>
-		                                                {% include "products/_value" with { val: ent.productValue.value } %}
-		                                                {# <div class="price">
-		                                                    <div class="prev">$199,99</div>
-		                                                    <div class="current">$119,99</div>
-		                                                </div> #}
-		                                            </div>
-		                                        </div>
-		                                    </div>
-                                		{% endfor %}
-	                                </div>
-	                                <div class="pagination"></div>
-	                            </div>
-	                        </div>
-	                    </div>
-                    {% endfor %}
-
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="color-text-widget" style="background-color: #333;">
-                        <div class="cell-view">
-                            <h3 class="title">What goes here?</h3>
-                            <div class="description">Lorem ipsum dolor sit amet, consectetur adipisc eiusmod. Lorem ipsum dolor sit amet.</div>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="color-text-widget" style="background-color: #6d4c3d;">
-                        <div class="cell-view">
-                            <h3 class="title">I just don't know</h3>
-                            <div class="description">Lorem ipsum dolor sit amet, consectetur adipisc eiusmod. Lorem ipsum dolor sit amet.</div>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-                </div>
-            </div>
-
-           {#  <div class="tabs-container">
-                <div class="swiper-tabs tabs-switch">
-                    <a class="block-title tab-switcher active">New Arrivals</a>
-                    <div class="clear"></div>
-                </div>
-                <div>
-                    <div class="tabs-entry">
-                        <div class="products-swiper">
-                            <div class="swiper-container" data-autoplay="0" data-loop="0" data-speed="500" data-center="0" data-slides-per-view="responsive" data-xs-slides="2" data-int-slides="2" data-sm-slides="3" data-md-slides="4" data-lg-slides="4" data-add-slides="4">
-                                <div class="swiper-wrapper">
-                        			{% for newb in craft.entries.section("products").order('entries.dateCreated desc').limit(12) %}
-										<div class="swiper-slide"> 
-	                                        <div class="paddings-container">
-	                                            <div class="product-slide-entry">
-	                                                <div class="product-image">
-	                                                    <img src="assets/img/product-bag-1.jpg" alt="" />
-	                                                    <a class="top-line-a left"><i class="fa fa-retweet"></i></a>
-	                                                    <a class="top-line-a right"><i class="fa fa-heart"></i></a>
-	                                                    <div class="bottom-line">
-	                                                        <a class="bottom-line-a"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-	                                                    </div>
-	                                                </div>
-	                                                <a class="tag" href="#">{{ newb.productCategory.first().title }}</a>
-	                                                <a class="title" href="#">{{ newb.title }}</a>
-	                                                <div class="rating-box">
-	                                                    <div class="star"><i class="fa fa-star"></i></div>
-	                                                    <div class="star"><i class="fa fa-star"></i></div>
-	                                                    <div class="star"><i class="fa fa-star"></i></div>
-	                                                    <div class="star"><i class="fa fa-star"></i></div>
-	                                                    <div class="star"><i class="fa fa-star"></i></div>
-	                                                </div>
-	                                                <div class="price">
-	                                                    <div class="prev">$199,99</div>
-	                                                    <div class="current">$119,99</div>
-	                                                </div>
-	                                            </div>
-	                                        </div>
-	                                    </div>
-                        			{% endfor %}
-                                </div>
-                                <div class="pagination"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> #}
-
-        </div>
-        <div class="col-md-3 information-entry">
-            
+						{% for ent in catEntries %}
+							<div class="col-6 col-lg-3">
+								{{ ent.title }}
+							</div>
+						{% endfor %}
+					</div>
+				{% endfor %}
+			</div>
+			
+		</div>
+		<div class="col-md-4 col-lg-3">
 			{% embed "_includes/categories" %}{% endembed %}
-
-            {# <div class="information-blocks">
-                <a class="sale-entry vertical" href="#">
-                    <span class="hot-mark yellow">hot</span>
-                    <span class="sale-price"><span>-40%</span> Valentine <br> Underwear Sale</span>
-                    <span class="sale-description">Lorem ipsum dolor sitamet, conse adipisc sed do eiusmod tempor.</span>
-                    <img style="" class="sale-image" src="assets/img/text-widget-image-5.jpg" alt="" />
-                </a>
-            </div> #}
-
-           {#  <div class="information-blocks">
-                <h3 class="block-title">Latest Reviews</h3>
-                <div class="swiper-container blockquote-slider" data-autoplay="0" data-loop="0" data-speed="500" data-center="0" data-slides-per-view="1">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide"> 
-                            <blockquote class="latest-review">
-                                <div class="text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation"</div>
-                                <footer><cite>Helen Smith</cite>, 25 minutes ago</footer>
-                            </blockquote>
-                        </div>
-                        <div class="swiper-slide"> 
-                            <blockquote class="latest-review">
-                                <div class="text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation"</div>
-                                <footer><cite>Helen Smith</cite>, 25 minutes ago</footer>
-                            </blockquote>
-                        </div>
-                        <div class="swiper-slide"> 
-                            <blockquote class="latest-review">
-                                <div class="text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation"</div>
-                                <footer><cite>Helen Smith</cite>, 25 minutes ago</footer>
-                            </blockquote>
-                        </div>
-                    </div>
-                    <div class="pagination"></div>
-                </div>
-            </div> #}
-
-         {#    <div class="information-blocks">
-                <h3 class="block-title">Company Informations</h3>
-                <div class="text-widget">
-                    <img class="image" src="assets/img/text-widget-image-4.jpg" alt="">
-                    <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-                    <a class="read-more">Read more <i class="fa fa-angle-right"></i></a>
-                    <div class="clear"></div>
-                </div>
-            </div> #}
-
-        </div>
-    </div>
-</div>
-
-<div class="information-blocks">
-    <h3 class="block-title inline-product-column-title">New Arrivals</h3>
-    <div class="row">
-    	{% for newb in craft.entries.section("products").order('entries.dateCreated desc').limit(15) %}
-    		<div class="col-sm-4 information-entry">
-	            <div class="inline-product-entry">
-	                <a href="{{ newb.url }}" class="image">
-                        {% if newb.productImages.count() > 0 %}
-                            <img src="{{ newb.productImages.first().url }}" alt="" />
-                        {% else %}
-                            <img alt="" src="assets/img/product-image-inline-33.jpg">
-                        {% endif %}
-                    </a>
-	                <div class="content">
-	                    <div class="cell-view">
-	                        <a href="{{ newb.url }}" class="title">{{ newb.title }}</a>
-                            <span class="tag">
-                                {% if newb.productCategory.count() > 0 and newb.productCategory.one().slug == "comics" %}
-                                    {{ newb.bookCondition.label }}
-                                {% else %}
-                                    {{ newb.isNew ? "New" : "Pre-Owned" }}
-                                {% endif %}
-                            </span>
-                            {% include "products/_value" with { val: newb.productValue.value } %}
-	                       {#  <div class="price">
-	                            <div class="prev">$199,99</div>
-	                            <div class="current">$119,99</div>
-	                        </div> #}
-	                    </div>
-	                </div>
-	                <div class="clear"></div>
-	            </div>
-	       	</div>
-    	{% endfor %}
-        {# <div class="col-sm-4 information-entry">
-            <div class="inline-product-entry">
-                <a href="#" class="image"><img alt="" src="assets/img/product-image-inline-33.jpg"></a>
-                <div class="content">
-                    <div class="cell-view">
-                        <a href="#" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
-                        <div class="price">
-                            <div class="prev">$199,99</div>
-                            <div class="current">$119,99</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="clear"></div>
-            </div>
-
-            <div class="inline-product-entry">
-                <a href="#" class="image"><img alt="" src="assets/img/product-image-inline-34.jpg"></a>
-                <div class="content">
-                    <div class="cell-view">
-                        <a href="#" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
-                        <div class="price">
-                            <div class="prev">$199,99</div>
-                            <div class="current">$119,99</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="clear"></div>
-            </div>
-
-            <div class="inline-product-entry">
-                <a href="#" class="image"><img alt="" src="assets/img/product-image-inline-35.jpg"></a>
-                <div class="content">
-                    <div class="cell-view">
-                        <a href="#" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
-                        <div class="price">
-                            <div class="prev">$199,99</div>
-                            <div class="current">$119,99</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="clear"></div>
-            </div>
-        </div>
-        <div class="col-sm-4 information-entry">
-            <div class="inline-product-entry">
-                <a href="#" class="image"><img alt="" src="assets/img/product-image-inline-36.jpg"></a>
-                <div class="content">
-                    <div class="cell-view">
-                        <a href="#" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
-                        <div class="price">
-                            <div class="prev">$199,99</div>
-                            <div class="current">$119,99</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="clear"></div>
-            </div>
-
-            <div class="inline-product-entry">
-                <a href="#" class="image"><img alt="" src="assets/img/product-image-inline-33.jpg"></a>
-                <div class="content">
-                    <div class="cell-view">
-                        <a href="#" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
-                        <div class="price">
-                            <div class="prev">$199,99</div>
-                            <div class="current">$119,99</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="clear"></div>
-            </div>
-
-            <div class="inline-product-entry">
-                <a href="#" class="image"><img alt="" src="assets/img/product-image-inline-34.jpg"></a>
-                <div class="content">
-                    <div class="cell-view">
-                        <a href="#" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
-                        <div class="price">
-                            <div class="prev">$199,99</div>
-                            <div class="current">$119,99</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="clear"></div>
-            </div>
-        </div>
-        <div class="col-sm-4 information-entry">
-            <div class="inline-product-entry">
-                <a href="#" class="image"><img alt="" src="assets/img/product-image-inline-35.jpg"></a>
-                <div class="content">
-                    <div class="cell-view">
-                        <a href="#" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
-                        <div class="price">
-                            <div class="prev">$199,99</div>
-                            <div class="current">$119,99</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="clear"></div>
-            </div>
-
-            <div class="inline-product-entry">
-                <a href="#" class="image"><img alt="" src="assets/img/product-image-inline-36.jpg"></a>
-                <div class="content">
-                    <div class="cell-view">
-                        <a href="#" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
-                        <div class="price">
-                            <div class="prev">$199,99</div>
-                            <div class="current">$119,99</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="clear"></div>
-            </div>
-
-            <div class="inline-product-entry">
-                <a href="#" class="image"><img alt="" src="assets/img/product-image-inline-33.jpg"></a>
-                <div class="content">
-                    <div class="cell-view">
-                        <a href="#" class="title">Ladies Pullover Batwing Sleeve Zigzag</a>
-                        <div class="price">
-                            <div class="prev">$199,99</div>
-                            <div class="current">$119,99</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="clear"></div>
-            </div>
-        </div> #}
-    </div>
-</div>
-
-
-
+		</div>
+	</div>
 
 {% endblock %}

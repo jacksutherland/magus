@@ -1,17 +1,12 @@
  <div class="sidebar-navigation">
-    <div class="title">All Categories<i class="fa fa-angle-down"></i></div>
-    <div class="list">
+    <div class="title">All Categories</div>
+    <div>
         {% for category in craft.categories %}
-            <a class="entry" href="{{ category.url }}"><span><i class="fa fa-angle-right"></i>{% if category.level == 1 %}<strong>{{ category.title }}</strong>{% else %}{{ category.title}}{% endif %}</span></a>
+            <a href="{{ category.url }}" class="level-{{ category.level }}">
+                <span>
+                    <i class="fa fa-angle-right"></i>{% if category.level == 1 %}<strong>{{ category.title }}</strong>{% else %}{{ category.title}}{% endif %}
+                </span>
+            </a>
         {% endfor %}
-        {# <a class="entry" href="#"><span><i class="fa fa-angle-right"></i>Evening dresses</span></a>
-        <a class="entry" href="#"><span><i class="fa fa-angle-right"></i>Jackets and coats</span></a>
-        <a class="entry" href="#"><span><i class="fa fa-angle-right"></i>Tops and Sweatshirts</span></a>
-        <a class="entry" href="#"><span><i class="fa fa-angle-right"></i>Blouses and shirts</span></a>
-        <a class="entry" href="#"><span><i class="fa fa-angle-right"></i>Trousers and Shorts</span></a>
-        <a class="entry" href="#"><span><i class="fa fa-angle-right"></i>Evening dresses</span></a>
-        <a class="entry" href="#"><span><i class="fa fa-angle-right"></i>Jackets and coats</span></a>
-        <a class="entry" href="#"><span><i class="fa fa-angle-right"></i>Tops and Sweatshirts</span></a>
-        <a class="entry" href="#"><span><i class="fa fa-angle-right"></i>Blouses and shirts</span></a> #}
     </div>
 </div>

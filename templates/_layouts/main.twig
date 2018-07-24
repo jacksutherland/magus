@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no, minimal-ui"/>
+        <link rel="shortcut icon" href="favicon.ico" />
+        <title>Trade Worm</title>
+
+        {# RESOURCES #}
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+
+        {# FONTS #}
+        <link href='http://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700%7CDancing+Script%7CMontserrat:400,700%7CMerriweather:400,300italic%7CLato:400,700,900' rel='stylesheet' type='text/css' />
+        <link href="https://fonts.googleapis.com/css?family=Chicle" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Henny+Penny" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Francois+One" rel="stylesheet">
+
+        {# CSS #}
+        <link href="assets/css/styles.css" rel="stylesheet" type="text/css" />
+    </head>
+
+    <body>
+
+        <header>
+            <div class="header-top">
+                <div class="container">
+                    <a href="#"><i class="fas fa-sign-in-alt"></i> <span>Login</span></a>
+                </div>
+            </div>
+            <div class="header-middle">
+                <a href="/"><h1 class="logo-title"><span>Trade</span><span>Worm</span></h1></a>
+            </div>
+            <div class="container">
+                <nav role="navigation">
+                    <div class="row">
+                        <div class="col-md-8 col-lg-9">
+                            <ul>
+                                {% for page in craft.entries.section("pages").level(1) %}
+                                    <li class="full-width">
+                                        <a href="{{ page.url }}" class="">{{ page.title }}</a>{# <i class="fa fa-chevron-down"></i> #}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="col-md-4 col-lg-3">
+                            <div class="simple-search-form">
+                                <form>
+                                    <input type="text" placeholder="Search for product">
+                                    <button type="submit"><i class="fa fa-search"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <div class="page-content">
+            <div class="container">
+                {% block content %} {% endblock %}
+            </div>
+        </div>
+
+        <footer>
+            <div class="container">
+                <div class="footer-links">
+                    {% for page in craft.entries.section("pages").level(1) %}
+                        <a href="{{ page.url }}" class="">{{ page.title }}</a>
+                    {% endfor %}
+                </div>
+                <div class="copyright">© 2018 TradeWorm.com. All right reserved. Created by <a href="http://www.jacksutherland.com">Jack</a>.</div>
+            </div>
+        </footer>
+
+        {# JS #}
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+
+    </body>
+
+</html>
