@@ -11,6 +11,13 @@ a {
 h1, h2, h3, h4, h5, h6 {
   margin: 0 0 20px 0; }
 
+h1 {
+  font-size: 30px;
+  line-height: 34px;
+  margin-bottom: 14px;
+  color: #3d3d3d;
+  font-weight: 400; }
+
 h3 {
   font-size: 24px;
   line-height: 24px;
@@ -18,6 +25,15 @@ h3 {
   font-weight: 600;
   padding-bottom: 15px;
   border-bottom: 1px #ebebeb solid; }
+
+h6 {
+  font-size: 14px;
+  line-height: 18px;
+  margin-bottom: 14px;
+  color: #949494;
+  font-weight: 400; }
+  h6 a {
+    color: #949494; }
 
 .border-spacer {
   border-bottom: 1px solid #ebebeb;
@@ -114,6 +130,18 @@ footer {
 
 .page-content {
   background: #ffffff; }
+
+/*** PAGINATION ***/
+.paginator {
+  padding: 0 0 30px 0;
+  text-align: center; }
+  .paginator a, .paginator span {
+    margin: 0 10px;
+    font-size: 16px; }
+  .paginator a {
+    color: #919191; }
+  .paginator span {
+    font-weight: 600; }
 
 /*** SUPER HEROES ***/
 .hero {
@@ -377,10 +405,29 @@ input[type=text] {
   max-height: 55px;
   overflow: hidden; }
 
-.product-thumb .product-value i {
+.product-value i {
   color: #ddd; }
-  .product-thumb .product-value i.active {
+  .product-value i.active {
     color: #f5c10c; }
+
+.product-value .product-value-description {
+  margin: 0 0 0 10px;
+  font-size: 14px;
+  color: #ca1515;
+  line-height: 14px;
+  font-weight: 500; }
+
+.product-detail {
+  padding: 0 0 30px 0; }
+  .product-detail .product-image {
+    border: solid 1px #ebebeb;
+    text-align: center;
+    padding: 20px; }
+    .product-detail .product-image img {
+      max-height: 500px;
+      max-width: 100%; }
+  .product-detail .product-notes {
+    margin: 30px 0; }
 
 /*** CTAs ***/
 .cta {

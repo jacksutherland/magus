@@ -2,14 +2,25 @@
 
 {% block content %}
 
+    {% set numberOfLargeRows = 3 %}
+    {% set numberOfSmallRows = 6 %}
+    {% set numberProductsPerLargeRow = 4 %}
+    {% set numberProductsPerSmallRow = 3 %}
+    {% set totalProductCount = (numberOfLargeRows * numberProductsPerLargeRow) + (numberOfSmallRows * numberProductsPerSmallRow) %}
+    {% set productCounter = 0 %}
+
     {% set catSlug = craft.request.getSegment(2) %}
     {% if not catSlug %}
         {% set catSlug = craft.request.getSegment(1) %}
     {% endif %}
     {% set category = craft.categories.slug(catSlug).one() %}
 
-    {# {% set products = craft.entries.section('products').relatedTo(category) %} #}
-    {% set products = craft.entries.section('products') %}
+    {# Add Data for Testing #}
+    {# {% set categoryProducts = craft.entries.section('products').relatedTo(category).order('entries.dateCreated desc') %}
+    {% set products = categoryProducts|merge(categoryProducts)|merge(categoryProducts)|merge(categoryProducts)|merge(categoryProducts)|merge(categoryProducts)|merge(categoryProducts)|merge(categoryProducts)|merge(categoryProducts)|merge(categoryProducts)|merge(categoryProducts) %} #}
+
+    {# LIVE DATA #}
+    {% paginate craft.entries.section('products').relatedTo(category).order('entries.dateCreated desc').limit(totalProductCount) as pageInfo, products %}
 
     {% if category.level > 1 %}
         {% set parent = category.parent() %}
@@ -20,44 +31,40 @@
         {% set subtitle = 'Category' %}
     {% endif %}
 
-    <div>
-        <div class="row">
-            <div class="col-md-9 information-entry">
+    <div class="row">
+        <div class="col-md-9 information-entry">
 
-                <div class="hero">
-                    <div class="hero-content">
-                        <span class="subtitle">{{ subtitle }}</span>
-                        <span class="title">{{ category.title }}</span>
-                    </div>
-                    <div class="hero-background"{% if categoryImage.count() > 0 %} style="background-image: url('{{ categoryImage.one().url }}'); background-size: cover;"{% endif %}></div>
+            <div class="hero">
+                <div class="hero-content">
+                    <span class="subtitle">{{ subtitle }}</span>
+                    <span class="title">{{ category.title }}</span>
                 </div>
+                <div class="hero-background"{% if categoryImage.count() > 0 %} style="background-image: url('{{ categoryImage.one().url }}'); background-size: cover;"{% endif %}></div>
+            </div>
 
-                {# {% include "products/_large-row" with { products: products | slice(0, 4) } %}
-                {% include "products/_large-row" with { products: products | slice(4, 4) } %}
-                {% include "products/_large-row" with { products: products | slice(8, 4) } %}
-                {% include "products/_large-row" with { products: products | slice(12, 4) } %} #}
-
-                {% include "products/_large-row" with { products: products | slice(0, 4) } %}
-                {% include "products/_large-row" with { products: products | slice(1, 4) } %}
-                {% include "products/_large-row" with { products: products | slice(2, 4) } %}
+            {% for i in 0..(numberOfLargeRows - 1) %}
+                {% include "products/_large-row" with { products: products | slice((i * numberProductsPerLargeRow), numberProductsPerLargeRow) } %}
+                {% set productCounter = (i * numberProductsPerLargeRow) + numberProductsPerLargeRow %}
                 
-            </div>
-
-            <div class="col-md-3 information-entry">
-    			{% embed "_includes/categories" %}{% endembed %}
-            </div>
-
+            {% endfor %}
+            
         </div>
 
-        <div class="border-spacer"></div>
-
-        {% include "products/_small-row" with { products: products | slice(0, 3) } %}
-        {% include "products/_small-row" with { products: products | slice(1, 3) } %}
-        {% include "products/_small-row" with { products: products | slice(2, 3) } %}
-        {% include "products/_small-row" with { products: products | slice(3, 3) } %}
-        {% include "products/_small-row" with { products: products | slice(0, 3) } %}
-        {% include "products/_small-row" with { products: products | slice(1, 3) } %}
+        <div class="col-md-3 information-entry">
+			{% embed "_includes/categories" %}{% endembed %}
+        </div>
 
     </div>
+
+    {% if products | length >  (numberOfLargeRows * numberProductsPerLargeRow) %}
+        <div class="border-spacer"></div>
+    {% endif %}
+
+    {% for i in 0..(numberOfSmallRows - 1) %}
+        {% include "products/_small-row" with { products: products | slice(productCounter, numberProductsPerSmallRow) } %}
+        {% set productCounter = productCounter + numberProductsPerSmallRow %}
+    {% endfor %}
+
+    {% embed "_includes/pagination" %}{% endembed %}
 
 {% endblock %}

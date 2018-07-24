@@ -1,0 +1,23 @@
+{% set prevUrls = pageInfo.getPrevUrls(5) %}
+{% set nextUrls = pageInfo.getNextUrls(5) %}
+<div class="paginator">
+    {# <a href="{{ pageInfo.firstUrl }}">First Page</a> #}
+    
+    {% if pageInfo.prevUrl %}<a href="{{ pageInfo.prevUrl }}"><i class="fas fa-chevron-left"></i></a>{% endif %}
+
+    {% for page, url in prevUrls %}
+        <a href="{{ url }}">{{ page }}</a>
+    {% endfor %}
+
+    {% if pageInfo.prevUrl or pageInfo.nextUrl or prevUrls or nextUrls %}
+        <span class="current">{{ pageInfo.currentPage }}</span>
+    {% endif %}
+
+    {% for page, url in nextUrls %}
+        <a href="{{ url }}">{{ page }}</a>
+    {% endfor %}
+
+    {% if pageInfo.nextUrl %}<a href="{{ pageInfo.nextUrl }}"><i class="fas fa-chevron-right"></i></a>{% endif %}
+
+    {# <a href="{{ pageInfo.lastUrl }}">Last Page</a> #}
+</div>

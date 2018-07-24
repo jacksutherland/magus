@@ -1,7 +1,15 @@
-<div class="product-value">
+<span class="product-value">
     <i class="fas fa-dollar-sign active"></i>
     <i class="fas fa-dollar-sign{% if val >= 55 %} active{% endif %}"></i>
     <i class="fas fa-dollar-sign{% if val >= 250 %} active{% endif %}"></i>
     <i class="fas fa-dollar-sign{% if val >= 700 %} active{% endif %}"></i>
     <i class="fas fa-dollar-sign{% if val >= 1000 %} active{% endif %}"></i>
-</div>
+    {% if showdescription is defined and showdescription %}
+    	{% set productValueField = craft.fields.getFieldbyHandle('productValue') %}
+    	{% for fieldVal in productValueField.options %}
+    		{% if val == fieldVal.value %}
+    			<span class="product-value-description">{{ fieldVal.label }}</span>
+    		{% endif %}
+    	{% endfor %}
+    {% endif %}
+</span>

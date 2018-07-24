@@ -1,1 +1,77 @@
-<h1 class="title">{{ entry.title }}</h1>
+{% extends "_layouts/main" %}
+
+{% block content %}
+
+	<div class="product-detail">
+
+		<div class="row">
+			<div class="col-md-5">
+				<div class="product-image">
+			        {% if entry.productImages.count() > 0 %}
+			            <img src="{{ entry.productImages.first().url }}" alt="" />
+			        {% endif %}
+			   	</div>
+			</div>
+			<div class="col-md-7">
+				<h1>{{ entry.title }}</h1>
+				<h6>
+					{% for cat in entry.productCategory %}
+						{% if loop.index > 1 %} - {% endif %} <a href="{{ cat.url }}">{{ cat.title }}</a> 
+					{% endfor %}
+				</h6>
+				{% include "products/_value" with { val: entry.productValue.value, showdescription: true } %}
+				<div class="product-notes">
+					<p><strong>Condition:</strong> 
+						{% if entry.productCategory.count() > 0 and entry.productCategory.one().slug == "comics" %}
+							{{ entry.bookCondition.label }}
+						{% else %}
+							{{ entry.isNew ? "New" : "Pre-Owned" }} ({{ entry.bookCondition.label }})
+						{% endif %}
+					</p>
+					{% if entry.issueNumber %}
+						<p><strong>Issue Number:</strong> {{ entry.issueNumber }}</p>
+					{% endif %}
+					{% if entry.yearPublished %}
+						<p><strong>Year Published:</strong> {{ entry.yearPublished }}</p>
+					{% endif %}
+					{% if entry.creativeTeam %}
+						<p><strong>Creative Team:</strong> {{ entry.creativeTeam }}</p>
+					{% endif %}
+					{% if entry.printing %}
+						<p>
+							<strong>Printing:</strong> 
+							{% switch entry.printing %}
+								{% case 1 %} 1st
+								{% case 2 %} 2nd
+								{% case 3 %} 3rd
+								{% default %} {{ entry.printing }}th
+							{% endswitch %}
+						</p>
+					{% endif %}
+					{% if entry.bookAuthor %}
+						<p><strong>Author:</strong> {{ entry.bookAuthor }}</p>
+					{% endif %}
+					{% if entry.slabService %}
+						<p><strong>Slab Service:</strong> <span class="text-uppercase">{{ entry.slabService.value }}</span></p>
+					{% endif %}
+					{% if entry.decimalGrade %}
+						<p><strong>Grade:</strong> {{ entry.decimalGrade }}</p>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	{% set products = craft.entries.section('products').relatedTo(entry.productCategory.last()).id('not ' ~ entry.id).order('entries.dateCreated desc').limit(9) %}
+	{% if products.count() > 0 %}
+		<div>
+			<h3>Others Like This</h3>
+			
+			{% include "products/_small-row" with { products: products | slice(0, 3) } %}
+			{% include "products/_small-row" with { products: products | slice(3, 3) } %}
+			{% include "products/_small-row" with { products: products | slice(6, 3) } %}
+		</div>
+	{% endif %}
+
+{% endblock %}
