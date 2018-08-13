@@ -44,6 +44,10 @@ h6 {
   margin: 0 0 20px 0;
   border-bottom: 1px solid #ebebeb; }
 
+.border-box {
+  border: solid 1px #ebebeb;
+  padding: 20px; }
+
 .logo-title {
   font-family: 'Chicle', cursive;
   font-size: 4.5rem;
@@ -129,7 +133,8 @@ footer {
       color: #ffffff; }
 
 .page-content {
-  background: #ffffff; }
+  background: #ffffff;
+  padding-bottom: 80px; }
 
 /*** PAGINATION ***/
 .paginator {
@@ -200,6 +205,42 @@ input[type=text] {
   font-family: 'Raleway', sans-serif;
   font-weight: 300; }
 
+button, .button {
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  background: #6d4c3d;
+  color: #ffffff;
+  padding: 0 20px;
+  cursor: pointer;
+  text-decoration: none !important; }
+  button:hover, .button:hover {
+    background: #7d5746; }
+  button.alternate-button, .button.alternate-button {
+    background: #eaded9;
+    color: #222; }
+    button.alternate-button:hover, .button.alternate-button:hover {
+      background: #e1d0c9; }
+
+.error {
+  font-weight: bold;
+  color: red; }
+
+.ux-form {
+  margin: 0 0 50px 0;
+  padding: 40px; }
+  .ux-form input[type=text], .ux-form input[type=password], .ux-form input[type=email], .ux-form textarea {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    background: none;
+    border: 1px #b5b5b5 solid;
+    padding: 0 12px;
+    margin: 0 0 20px 0;
+    font-size: 13px;
+    color: #222;
+    font-weight: 300; }
+
 .simple-search-form {
   border: 1px #e8e8e8 solid;
   padding: 6px 0 6px 12px;
@@ -219,6 +260,7 @@ input[type=text] {
     position: absolute;
     width: 38px;
     height: 25px;
+    line-height: 25px;
     border-top: none;
     border-bottom: none;
     border-right: none;
@@ -226,7 +268,9 @@ input[type=text] {
     top: 6px;
     right: 0;
     cursor: pointer;
-    color: #919191; }
+    color: #919191;
+    background: transparent;
+    padding: 0; }
 
 /*** SIDEBAR ***/
 .sidebar-navigation {
@@ -420,9 +464,7 @@ input[type=text] {
 .product-detail {
   padding: 0 0 30px 0; }
   .product-detail .product-image {
-    border: solid 1px #ebebeb;
-    text-align: center;
-    padding: 20px; }
+    text-align: center; }
     .product-detail .product-image img {
       max-height: 500px;
       max-width: 100%; }

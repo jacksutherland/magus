@@ -7,6 +7,7 @@ $thin-border-color: #ebebeb;
 $empty-image-color: #BEBEBE;
 $element-spacing: 30px;
 $hero-height: 200px;
+$button-color: #6d4c3d;
 
 body {
     font-family: 'Raleway', sans-serif;
@@ -65,6 +66,11 @@ h6 {
 	padding: 0 0 20px 0;
 	margin: 0 0 20px 0;
 	border-bottom: 1px solid $thin-border-color;
+}
+
+.border-box {
+	border: solid 1px $thin-border-color;
+	padding: 20px;
 }
 
 .logo-title {
@@ -173,6 +179,7 @@ footer {
 
 .page-content {
 	background: $white;
+	padding-bottom: 80px;
 }
 
 
@@ -261,6 +268,49 @@ input[type=text] {
     font-weight: 300;
 }
 
+button, .button {
+	display: inline-block;
+	height: 40px;
+	line-height: 40px;
+	background: $button-color;
+	color: $white;
+    padding: 0 20px;
+    cursor: pointer;
+    text-decoration: none !important;
+    &:hover {
+    	background: lighten($button-color, 5%);
+    }
+    &.alternate-button {
+    	background: lighten($button-color, 55%);
+    	color: #222;
+    	&:hover {
+	    	background: lighten($button-color, 50%);
+	    }
+    }
+}
+
+.error {
+	font-weight: bold;
+	color: red;
+}
+
+.ux-form {
+    margin: 0 0 50px 0;
+    padding: 40px;
+	input[type=text], input[type=password], input[type=email], textarea  {
+    	width: 100%;
+        height: 40px;
+	    line-height: 40px;
+	    background: none;
+	    border: 1px darken(#e8e8e8, 20%) solid;
+	    padding: 0 12px;
+	    margin: 0 0 20px 0;
+	    font-size: 13px;
+	    color: #222;
+	    font-weight: 300;
+    }
+}
+
 .simple-search-form {
     border: 1px #e8e8e8 solid;
     padding: 6px 0 6px 12px;
@@ -281,6 +331,7 @@ input[type=text] {
     	position: absolute;
 	    width: 38px;
 	    height: 25px;
+	    line-height: 25px;
 	    border-top: none;
 	    border-bottom: none;
 	    border-right: none;
@@ -289,6 +340,8 @@ input[type=text] {
 	    right: 0;
 	    cursor: pointer;
 	    color: $gray-font;
+	    background: transparent;
+	    padding: 0;
     }
 }
 
@@ -299,7 +352,7 @@ input[type=text] {
 	border: 2px #6d4c3d solid;
 	margin-bottom: $element-spacing;
 	.title {
-		background: #6d4c3d;
+		background: $button-color;
 	    padding: 20px 25px;
 	    line-height: 15px;
 	    color: $white;
@@ -524,9 +577,7 @@ input[type=text] {
 .product-detail {
 	padding: 0 0 $element-spacing 0;
 	.product-image {
-		border: solid 1px $thin-border-color;
 		text-align: center;
-		padding: 20px;
 		img {
 			max-height: 500px;
 			max-width: 100%;
@@ -547,7 +598,7 @@ input[type=text] {
 		background-color: #333;
 	}
 	&.cta-style-2 {
-		background-color: #6d4c3d;
+		background-color: $button-color;
 	}
 	.cta-frame {
 		height: 135px;

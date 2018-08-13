@@ -28,7 +28,11 @@
         <header>
             <div class="header-top">
                 <div class="container">
-                    <a href="#"><i class="fas fa-sign-in-alt"></i> <span>Login</span></a>
+                    {% if currentUser %}
+                        <a href="{{ logoutUrl }}"><i class="fas fa-sign-out-alt"></i> <span>Sign out</span></a>
+                    {% else %}
+                        <a href="/signin"><i class="fas fa-sign-in-alt"></i> <span>Sign in</span></a>
+                    {% endif %}
                 </div>
             </div>
             <div class="header-middle">

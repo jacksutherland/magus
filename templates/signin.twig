@@ -1,0 +1,37 @@
+{% extends "_layouts/main" %}
+
+{% block content %}
+
+	<div class="row">
+		<div class="col-md-6 m-auto">
+			<h1 class="text-center">Sign In</h1>
+			<div class="ux-form border-box">
+				<form class="input-form" method="post" accept-charset="UTF-8">
+					{{ getCsrfInput() }}
+					<input type="hidden" name="action" value="users/login">
+                    <input type="hidden" name="redirect" value="/">
+                    {% if errorMessage is defined %}
+				        <p class="error text-center">{{ errorMessage }}</p>
+				    {% endif %}
+					<div>
+						<label for="loginName">Email</label>
+						<input type="text" name="loginName">
+					</div>
+					<div>
+						<label for="password">Password</label>
+						<input type="password" name="password">
+					</div>
+					<div>
+						<button>Continue</button>
+					</div>
+				</form>
+			</div>
+			<div class="border-spacer"></div>
+			<div class="text-center">
+				<h5>New to TradeWorm?</h5>
+				<a href="/" class="button alternate-button">Create an account</a>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
