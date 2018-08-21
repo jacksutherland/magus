@@ -136,6 +136,13 @@ footer {
   background: #ffffff;
   padding-bottom: 80px; }
 
+.simple-title {
+  position: relative; }
+  .simple-title .buttons {
+    position: absolute;
+    top: -10px;
+    right: 0; }
+
 /*** PAGINATION ***/
 .paginator {
   padding: 0 0 30px 0;
@@ -215,12 +222,17 @@ button, .button {
   cursor: pointer;
   text-decoration: none !important; }
   button:hover, .button:hover {
-    background: #7d5746; }
-  button.alternate-button, .button.alternate-button {
+    background: #7d5746;
+    color: #ffffff; }
+  button.light-button, .button.light-button {
     background: #eaded9;
     color: #222; }
-    button.alternate-button:hover, .button.alternate-button:hover {
+    button.light-button:hover, .button.light-button:hover {
       background: #e1d0c9; }
+  button.blue-button, .button.blue-button {
+    background: #337ab7; }
+    button.blue-button:hover, .button.blue-button:hover {
+      background: #478ecc; }
 
 .error {
   font-weight: bold;
@@ -240,6 +252,8 @@ button, .button {
     font-size: 13px;
     color: #222;
     font-weight: 300; }
+  .ux-form .checkbox {
+    margin: 0 0 20px 0; }
 
 .simple-search-form {
   border: 1px #e8e8e8 solid;

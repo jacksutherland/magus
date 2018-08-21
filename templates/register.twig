@@ -1,0 +1,80 @@
+{% extends "_layouts/main" %}
+
+{% set checkemail = craft.request.getParam('status') == 'checkemail' %}
+
+{% block scripts %}
+	<script type="text/javascript">
+    	$(function()
+    	{
+    		wormhole.register();
+    	});         
+   	</script>
+{% endblock %}
+
+{% block content %}
+
+	<div class="row">
+		<div class="col-md-8 col-lg-6 m-auto">
+			{% if checkemail %}
+				<h1 class="text-center">Registration was successful</h1>
+				<h5 class="text-center">Please check your email for a confirmation message on how to proceed.</h5>
+			{% else %}
+				<h1 class="text-center">Register</h1>
+				<div class="ux-form border-box">
+					<form id="register-form" class="input-form" method="post" accept-charset="UTF-8">
+					    {{ csrfInput() }}
+					    <input type="hidden" name="action" value="users/save-user">
+					    {{ redirectInput('/register?status=checkemail') }}
+	                    {#  <input type="hidden" name="redirect" value="/"> #}
+					  	<input type="hidden" id="username" name="username" {%- if user is defined %} value="{{ user.email }}"{% endif %}>
+					  	<div id="errors">
+		                    {% if errorMessage is defined %}
+						        {{ errorMessage }}</p>
+						    {% endif %}
+						    {% macro errorList(errors) %}
+						        {% if errors %}
+						            <p class="error text-center">
+						                {% for error in errors %}
+						                	{{ error }}<br>
+						                {% endfor %}
+						            </p>
+						        {% endif %}
+						    {% endmacro %}
+						</div>
+						<div>
+							<label for="firstName">First Name</label>
+							<input id="fn" type="text" name="firstName"{%- if user is defined %} value="{{ user.firstName }}"{% endif -%}>
+						</div>
+						<div>
+							<label for="lastName">Last Name</label>
+							<input id="ln" type="text" name="lastName"{%- if user is defined %} value="{{ user.lastName }}"{% endif -%}>
+						</div>
+						<div>
+							<label for="email">Email</label>
+							<input id="email" type="text" name="email"{%- if user is defined %} value="{{ user.email }}"{% endif -%}>
+						</div>
+						<div>
+							<label for="password">Password</label>
+							<input id="password" type="password" name="password">
+						</div>
+						<div>
+							<label for="confirmPassword">Re-enter Password</label>
+							<input id="confirm-password" type="password">
+						</div>
+						<div>
+							<button>Create Account</button>
+						</div>
+					</form>
+				</div>
+			{% endif %}
+
+			<div class="border-spacer"></div>
+			<div class="text-center">
+				<h5>Already Regsitered?</h5>
+				<a href="/signin" class="button light-button">Click here to sign in</a>
+			</div>
+
+		</div>
+	</div>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "_layouts/main" %}
+
+{% block content %}
+
+	{% set products = craft.entries.section('products').relatedTo({
+	    targetElement: currentUser,
+	    field: 'productOwner'
+	}) %}
+
+
+	<div class="simple-title">
+		<h3>{{ products.count() }} Active Products</h3>
+		<div class="buttons">
+			<a href="" class="button blue-button">List an item</a>
+		</div>
+	</div>
+
+	<div>
+		{% include "products/_small-row" with { products: products } %}
+	</div>
+
+{% endblock %}
